@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Back End Assessment</title>
+    <link rel="stylesheet" href="styles.css"/>
+  </head>
+  <body class="container">
+    <button id="complimentButton">Get a compliment</button>
+    <button id="fortuneButton"> Fortune Reveal</button>
+    <button id="jokes"> Wanna hear a joke?</button>
+    <div id="emoji"> </div>
+    <h2> How Do You Feel Today?</h2>
+    <form id="submit" > 
+      <label for="fname"> First Name: </label></br>
+      <input type="text" id="fname" name="fname"></br>
+      <label for="lname"> Last Name: </label></br>
+      <input type="text" id="lname" name="lname"></br>
+      <label for="lname"> Message </label></br>
+      <input type="text" id="message" name="message"></br>
+      <input type="submit" value="Submit">
+      <input type="reset">
+    </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      document.getElementById("complimentButton").onclick = function () {
+        axios.get("http://localhost:4000/api/compliment/")
+            .then(function (response) {
+              const data = response.data;
+              alert(data);
+            });
+      };
+    </script>
+    <script>
+      document.getElementById('fortuneButton').onclick = function () {
+        axios.get("http://localhost:4000/api/fortune/")
+        .then(function (response) {
+          const data = response.data;
+          alert(data);
+        });
+      };
+    </script>
+    <script>
+      document.getElementById('submit').onsubmit = function (e) {
+        e.preventDefault()
+        let user = {
+          firstName: document.getElementById('fname').value,
+          lastName:  document.getElementById('lname').value, 
+          message: document.getElementById('message').value,
+        }
+        axios.post("http://localhost:4000/api/inspiration/", user )
+        .then(function (response) {
+          const data = response.data;
+          alert(data);
+        });
+
+      };
+    </script>
+   <script>
+    document.getElementById('emoji').onmouseover = function () {
+      axios.get("http://localhost:4000/api/emojiimage/")
+      .then(function (response) {
+        const data = response.data;
+        alert(data);
+      });
+    };
+
+  </script>
+   <script>
+    document.getElementById("jokes").onclick = function () {
+      axios.get("http://localhost:4000/api/jokes/")
+          .then(function (response) {
+            const data = response.data;
+            alert(data);
+          });
+    };
+  </script>
+  </body>
+</html>

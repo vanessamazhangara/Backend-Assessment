@@ -1,0 +1,14 @@
+body {
+    background-color: cadetblue;
+}
+
+div {
+    width: 150px;
+    height: 150px;
+    background-image: url(https://ih1.redbubble.net/image.404743480.2051/st,small,507x507-pad,600x600,f8f8f8.u8.jpg);
+    background-size: 100%;
+    border-color: black;
+    border: 25px;
+    border-radius: 50%;
+    margin: 25px;
+}
